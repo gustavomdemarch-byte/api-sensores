@@ -7,8 +7,8 @@ app.use(express.json());
 
 // Dados simulados (como se fosse um banco de dados)
 let usuarios = [
-  { id: 1, nome: 'Ana', email: 'ana@email.com' },
-  { id: 2, nome: 'João', email: 'joao@email.com' }
+  { id: 1, maquina: 'abc', temeratura: '100', umidade: '90%', pressao: '150bar' },
+  { id: 2, maquina: 'abd', temeratura: '90', umidade: '80%', pressao: '15bar' }
 ];
 
 // Rota GET - listar todos os usuários
@@ -26,8 +26,10 @@ app.get('/usuarios/:id', (req, res) => {
 app.post('/usuarios', (req, res) => {
   const novoUsuario = {
     id: usuarios.length + 1,
-    nome: req.body.nome,
-    email: req.body.email
+    maquina: req.body.nome,
+    temperatura: req.body.temp,
+    umidade: req.body.umi,
+    pressao: req.body.press
   };
   usuarios.push(novoUsuario);
   res.status(201).json(novoUsuario);
@@ -43,3 +45,4 @@ app.delete('/usuarios/:id', (req, res) => {
 app.listen(port, () => {
   console.log(`🚀 Servidor rodando em http://localhost:${port}`);
 });
+
